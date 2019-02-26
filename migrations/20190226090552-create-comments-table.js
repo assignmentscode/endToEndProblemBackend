@@ -26,16 +26,18 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE,
     },
-  }).then(() => queryInterface.addConstraint('commentsTables', ['questionID'], {
-    type: 'FOREIGN KEY',
-    name: 'FK_commentsTable',
-    references: {
-      table: 'questionLists',
-      field: 'id',
-    },
-    onDelete: 'no action',
-    onUpdate: 'no action',
-  })),
-  down: queryInterface => queryInterface.removeConstraint('commentsTables', 'FK_commentsTable')
-    .then(() => queryInterface.dropTable('commentsTables')),
+  }),
+  down: queryInterface => queryInterface.dropTable('commentsTables'),
 };
+
+// .then(() => queryInterface.addConstraint('commentsTables', ['questionID'], {
+//   type: 'FOREIGN KEY',
+//   name: 'FK_commentsTable',
+//   references: {
+//     table: 'questionLists',
+//     field: 'id',
+//   },
+//   onDelete: 'no action',
+//   onUpdate: 'no action',
+// }))
+// queryInterface.removeConstraint('commentsTables', 'FK_commentsTable')
